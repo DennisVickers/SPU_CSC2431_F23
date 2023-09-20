@@ -3,19 +3,19 @@
 using namespace std;
 
 // Bubble Sort Algorithm
-void bubbleSort(vector<int> &list) {
+void BubbleSort(vector<int> &list) {
    
    bool swapped;
-   int lastOuter;
-   int lastInner;
+   int lastElement;
+   int lastUnsorted;
 
    // Outer loop
-   lastOuter = (list.size() - 1);
-   lastInner = lastOuter;
-   for (int i = 0; i < lastOuter; i++) {
+   lastElement = (list.size() - 1);
+   lastUnsorted = lastElement;
+   for (int i = 0; i < lastElement; i++) {
       swapped = false;
       // Inner Loop
-      for (int j = 0; j < lastInner; j++) {
+      for (int j = 0; j < lastUnsorted; j++) {
          if (list.at(j) > list.at(j + 1)) {
             // Swap elements
             int temp = list.at(j);
@@ -25,7 +25,7 @@ void bubbleSort(vector<int> &list) {
          }
       }
       // Reduce the search search space
-      lastInner--;
+      lastUnsorted--;
       
       // If no two adjacent elements were swapped in inner loop, the listay is sorted
       if (!swapped) {
@@ -49,7 +49,7 @@ int main() {
     cout << "Original list: ";
     printList(list);
 
-    bubbleSort(list);
+    BubbleSort(list);
 
     cout << "Sorted list: ";
     printList(list);
