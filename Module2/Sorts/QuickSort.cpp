@@ -27,10 +27,10 @@ int main() {
 
 /* Helper functions */
 void printList(const vector<int> &list) {
-    for (int num : list) {
-        cout << num << " ";
-    }
-    cout << endl;
+   for (int num : list) {
+       cout << num << " ";
+   }
+   cout << endl;
 }
 
 void createList(vector<int> &list, int listSize) {
@@ -42,40 +42,44 @@ void createList(vector<int> &list, int listSize) {
 
 
 void quickSort(vector<int> &list, int low, int high) {
-    if (low < high) {
-        // pi is the partitioning index, list[pi] is now
-        // at its correct position
-        int pi = partition(list, low, high);
+   int pivotIndex;
 
-        // Recursively sort the elements before and after partition
-        quickSort(list, low, pi - 1);
-        quickSort(list, pi + 1, high);
-    }
+   // Base case
+   if (low >= high) {
+      return;
+   }
+
+   // Find the partition
+   pivotIndex = partition(list, low, high);
+
+   // Recursively sort the elements before and after partition
+   quickSort(list, low, pivotIndex - 1);
+   quickSort(list, pivotIndex + 1, high);
 }
 
 int partition(vector<int> &list, int low, int high) {
-    // Choose the rightmost element as the pivot
-    int pivot = list.at(high);
-	int temp; // used with swap
+   // Choose the rightmost element as the pivot
+   int pivot = list.at(high);
+   int temp; // used with swap
   
-    // Pointer for greater element
-    int i = low - 1;
+   // Pointer for greater element
+   int i = low - 1;
 
-    // Traverse through all elements
-    for (int j = low; j <= high - 1; j++) {
-        // If the current element is smaller than the pivot
-        if (list.at(j) < pivot) {
-            i++;  // Increment the index of the smaller element
-			temp = list.at(j);
-            list.at(j) = list.at(i);
-            list.at(i) = temp;
-        }
-    }
-    // Swap the pivot element with the greater element specified by i
-	temp = list.at(i+1);
-	list.at(i+1) = list.at(high);
-	list.at(high) = temp;
+   // Traverse through all elements
+   for (int j = low; j <= high - 1; j++) {
+      // If the current element is smaller than the pivot
+      if (list.at(j) < pivot) {
+         i++;  // Increment the index of the smaller element
+	     temp = list.at(j);
+         list.at(j) = list.at(i);
+         list.at(i) = temp;
+      }
+   }
+   // Swap the pivot element with the greater element specified by i
+   temp = list.at(i+1);
+   list.at(i+1) = list.at(high);
+   list.at(high) = temp;
 
-    // Return the position from where partition is done
-    return i + 1;
+   // Return the position from where partition is done
+   return (i + 1);
 }
