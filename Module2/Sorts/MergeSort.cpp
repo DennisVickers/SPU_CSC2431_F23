@@ -6,8 +6,8 @@ using namespace std;
 // Function declarations
 void createList(vector<int> &list, int listSize=10);
 void printList(const vector<int> &list);
-void merge(vector<int> &list, int low, int middle, int high);
-void mergeSort(vector<int> &list, int low, int high);
+void merge(vector<int> &list, int lowIdx, int middleIdx, int highIdx);
+void mergeSort(vector<int> &list, int lowIdx, int highIdx);
 
 int main() {
    
@@ -15,7 +15,7 @@ int main() {
    vector<int> list;
    createList(list, 5);
 
-   cout << "Original list: ";
+   cout << "Unsorted list: ";
    printList(list);
 
    mergeSort(list, 0, list.size() - 1);
@@ -43,47 +43,47 @@ void createList(vector<int> &list, int listSize) {
 }
 
 // Merge Sort function
-void mergeSort(vector<int> &list, int low, int high) {
-   int middle;
+void mergeSort(vector<int> &list, int lowIdx, int highIdx) {
+   int middleIdx;
 
    // Base case
-   if (low >= high) {
+   if (lowIdx >= highIdx) {
       return;
    }
 
-   // Find the middle of the list
-   middle = low + ((high - low) / 2);
+   // Find the middleIdx of the list
+   middleIdx = lowIdx + ((highIdx - lowIdx) / 2);
 	
    // Split the list
-   mergeSort(list, low, middle);
-   mergeSort(list, middle + 1, high);
+   mergeSort(list, lowIdx, middleIdx);
+   mergeSort(list, middleIdx + 1, highIdx);
 
    // Merge the lists of one back together
-   merge(list, low, middle, high);
+   merge(list, lowIdx, middleIdx, highIdx);
 }
 
 // Function to merge two sorted lists
-void merge(vector<int> &list, int low, int middle, int high) {
+void merge(vector<int> &list, int lowIdx, int middleIdx, int highIdx) {
    // Initialize temporary lists to hold the values of the left and right sub-lists
-   vector<int> leftList(middle - low + 1);
-   vector<int> rightList(high - middle);
+   vector<int> leftList(middleIdx - lowIdx + 1);
+   vector<int> rightList(highIdx - middleIdx);
 
    // Copy the elements to the temporary lists
    for (int i = 0; i < leftList.size(); i++) {
-      leftList[i] = list[low + i];
+      leftList.at(i) = list.at(lowIdx + i);
    }
    for (int j = 0; j < rightList.size(); j++) {
-      rightList[j] = list[middle + 1 + j];
+      rightList.at(j) = list.at(middleIdx + 1 + j);
    }
 
    // Merge the temporary lists back into the original list
-   int i = 0, j = 0, k = low;
-   while ((i < leftList.size()) && (j < rightList.size())) {
-      if (leftList[i] <= rightList[j]) {
-         list[k] = leftList[i];
+   int i = 0, j = 0, k = lowIdx;
+   while (i < leftList.size() && j < rightList.size()) {
+      if (leftList.at(i) <= rightList.at(j)) {
+         list.at(k) = leftList.at(i);
          i++;
       } else {
-         list[k] = rightList[j];
+         list.at(k) = rightList.at(j);
          j++;
       }
       k++;
@@ -91,14 +91,14 @@ void merge(vector<int> &list, int low, int middle, int high) {
 
    // Copy any remaining elements from leftList, if there are any
    while (i < leftList.size()) {
-      list[k] = leftList[i];
+      list.at(k) = leftList.at(i);
       i++;
       k++;
    }
 
    // Copy any remaining elements from rightList, if there are any
    while (j < rightList.size()) {
-      list[k] = rightList[j];
+      list.at(k) = rightList.at(j);
       j++;
       k++;
    }
