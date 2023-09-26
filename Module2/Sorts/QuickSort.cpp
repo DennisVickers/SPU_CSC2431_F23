@@ -53,8 +53,8 @@ void quickSort(vector<int> &list, int low, int high) {
    pivotIndex = partition(list, low, high);
 
    // Recursively sort the elements before and after partition
-   quickSort(list, low, pivotIndex - 1);
-   quickSort(list, pivotIndex + 1, high);
+   quickSort(list, low, pivotIndex - 1);  // Left list
+   quickSort(list, pivotIndex + 1, high); // Right list
 }
 
 int partition(vector<int> &list, int low, int high) {
@@ -62,7 +62,7 @@ int partition(vector<int> &list, int low, int high) {
    int pivot = list.at(high);
    int temp; // used with swap
   
-   // Pointer for greater element
+   // Index for greater element
    int i = low - 1;
 
    // Traverse through all elements

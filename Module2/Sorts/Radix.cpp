@@ -1,9 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
-#include <cmath>
 #include <string>
 using namespace std;
+
+// Global constants
+const int LIST_SIZE=20;
+const int VALUE_RANGE=200;
 
 // Declare functions
 void radixSort(vector<int> &list, int n, int max);
@@ -15,7 +18,7 @@ int getDigit(int number, int position);
 int main() {
     // Create a random list of integers between 1-200
     vector<int> list;
-    createList(list, 20);
+    createList(list, LIST_SIZE);
 
     cout << "Unsorted list: ";
     printList(list);
@@ -29,6 +32,8 @@ int main() {
 }
 
 /* Helper functions */
+
+// Function to display a list of integers
 void printList(const vector<int> &list) {
     for (int num : list) {
         cout << num << " ";
@@ -36,10 +41,11 @@ void printList(const vector<int> &list) {
     cout << endl;
 }
 
+// Function to create a random list of integers
 void createList(vector<int> &list, int listSize) {
     srand(time(0));
     for (int i=0; i<listSize; i++) {
-        list.push_back((rand() % 100));
+        list.push_back((rand() % VALUE_RANGE));
     }
 }
 
@@ -54,13 +60,23 @@ int getMax(const vector<int> &list) {
     return max;
 }
 
+// Function to isolate and return a single digit from an integer
 int getDigit(int number, int position) {
-    string numStr = to_string(number);
-    string retVal = numStr.substr(numStr.length() - 1 - position,1);
+    string retVal="0";  // Set the return value to 0 by default
+
+    string numStr = to_string(number);  // convert the number to a string
+    int numSize = to_string(number).length();  // Get the length of the number
+    int numIdx = numSize - 1 - position;  // Isolate the digit in the string wanted
+
+    // Return a value if it is pointing to a location, else return 0
+    if (numIdx >= 0) {
+        retVal = numStr.substr(numIdx,1);
+    }
 
     return stoi(retVal);
 }
 
+// Function to sort a list using a Radix algorithm
 void radixSort(vector<int> &list, int n, int max) {
     vector<vector <int>> bucket{{},{},{},{},{},{},{},{},{},{}};      //radix of decimal number is 10
     int maxDigits;
@@ -70,7 +86,6 @@ void radixSort(vector<int> &list, int n, int max) {
     maxDigits = to_string(max).length();
 
     int count;
-    cout << "MaxDigits:" << maxDigits << endl;
     for (int i=0; i<maxDigits; i++) {
         for (int j=0; j<n; j++) {
             itemVal = list.at(j);
@@ -84,7 +99,7 @@ void radixSort(vector<int> &list, int n, int max) {
                 list.at(count) = num;
                 count++;
             }
-            bucket[k].clear();
+            bucket.at(k).clear();
         }
     }
 }
