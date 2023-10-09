@@ -18,6 +18,7 @@ public:
    void push(int data);
    int pop();
    int peek() const;
+   int search(int data) const;
    bool isEmpty() const;
 };
 

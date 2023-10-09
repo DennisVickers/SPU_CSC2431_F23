@@ -47,6 +47,20 @@ int Stack::peek() const {
    return top->data;
 }
 
+// Search for an element
+int Stack::search(int data) const {
+   int location = 0;
+   Node* current = top;
+   while (current != nullptr) {
+      if (current->data == data) {
+         return location;
+      }
+      location++;
+      current = current->next;
+   }
+   return -1; // data not found
+}
+
 // Check if stack is empty
 bool Stack::isEmpty() const {
    return top == nullptr;
