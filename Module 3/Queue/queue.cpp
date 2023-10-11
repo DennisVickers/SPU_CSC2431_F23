@@ -4,7 +4,7 @@
 // Node Constructor
 Node::Node(int data) : data(data), next(nullptr) {}
 
-// Stack constructor
+// Queue constructor
 Queue::Queue() : front(nullptr), rear(nullptr), size(0) {}
 
 Queue::~Queue() {
