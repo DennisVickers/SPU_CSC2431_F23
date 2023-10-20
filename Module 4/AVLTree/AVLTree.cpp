@@ -5,7 +5,9 @@ Node::Node(int key) : key(key), height(1), left(nullptr), right(nullptr) {}
 
 // AVLTree constructor and destructor
 AVLTree::AVLTree() : root(nullptr) {}
-AVLTree::~AVLTree() {}
+AVLTree::~AVLTree() {
+   deleteTree(root);
+}
 
 // Public functions
 void AVLTree::insert(int key) {
@@ -184,4 +186,13 @@ Node *AVLTree::rotateRight(Node *subjNode) {
    newParent->height = 1 + max(getHeight(newParent->left), getHeight(newParent->right));
 
    return newParent;
+}
+
+// Recursive function to delete all nodes in the tree
+void AVLTree::deleteTree(Node *currNode) {
+   if (currNode == nullptr) return;  // Base case
+
+   deleteTree(currNode->left); // Follow the left path
+   deleteTree(currNode->right); // Follow the right path
+   delete currNode;  // Delete the current node (leaf)
 }

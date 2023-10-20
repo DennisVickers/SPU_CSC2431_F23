@@ -35,6 +35,7 @@ private:
    int getBalanceFactor(Node *node) const;
    Node *rotateLeft(Node *node);
    Node *rotateRight(Node *node);
+   void deleteTree(Node*);
 };
 
 #endif //AVLTREE_AVLTREE_H
