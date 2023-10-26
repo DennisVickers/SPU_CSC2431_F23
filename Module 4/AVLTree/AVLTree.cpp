@@ -28,8 +28,8 @@ void AVLTree::inorderTraversal() const {
 }
 
 // Private functions
-Node* AVLTree::insert(Node *newNode, int key) {
-   // Regular BSt node removal operation
+Node *AVLTree::insert(Node *newNode, int key) {
+   // Regular BST node insert operation
    if (newNode == nullptr) {
       return (new Node(key));
    }
@@ -47,6 +47,7 @@ Node* AVLTree::insert(Node *newNode, int key) {
    // Get balance factor
    int balance = getBalanceFactor(newNode);
 
+   // Re-balance if necessary
    if (balance > 1 && getBalanceFactor(newNode->left) >= 0) { // LL Rotation
       return rotateRight(newNode);
    }

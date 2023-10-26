@@ -4,8 +4,8 @@
 #include <algorithm>
 using namespace std;
 
-class Node {
-public:
+// Properties and methods for a node
+struct Node {
    int key;
    int height;
    Node *left;
@@ -13,6 +13,7 @@ public:
    Node(int key);
 };
 
+// Properties and methods for the tree
 class AVLTree {
 public:
    AVLTree();
@@ -31,10 +32,10 @@ private:
    bool search(Node *node, int key) const;
    void inorderTraversal(Node *node) const;
 
-   int getHeight(Node *node) const;
-   int getBalanceFactor(Node *node) const;
-   Node *rotateLeft(Node *node);
-   Node *rotateRight(Node *node);
+   int getHeight(Node*) const;
+   int getBalanceFactor(Node*) const;
+   Node *rotateLeft(Node*);
+   Node *rotateRight(Node*);
    void deleteTree(Node*);
 };
 
