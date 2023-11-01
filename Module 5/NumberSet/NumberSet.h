@@ -19,7 +19,7 @@ public:
    void remove(int num);   // Removes a number from the set
    bool exists(int num);   // Checks if a number exists in the set
    void print() const;     // Prints the set elements
-   vector<int> getUnion(NumberSet *set2);        // Union operation
+   vector<int> getUnion(NumberSet *set2);        // Union combine operation
    vector<int> getIntersection(NumberSet *set2); // Intersection operation
    vector<int> getDifference(NumberSet *set2);   // Difference operation
 };

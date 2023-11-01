@@ -6,7 +6,7 @@ int main() {
    NumberSet setTwo;
    vector<int> subSet;
 
-   // Add numbers to set 1
+   // Add numbers to set one
    setOne.add(5);
    setOne.add(10);
    setOne.add(15);

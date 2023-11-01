@@ -4,7 +4,7 @@
 // Constructor
 NumberSet::NumberSet() {}
 
-// Destructor (not needed)
+// Destructor (not really needed)
 NumberSet::~NumberSet() {}
 
 // Adds a number to the set
