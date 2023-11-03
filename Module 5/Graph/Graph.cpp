@@ -9,8 +9,8 @@ void Graph::addEdge(int v, int w) {
    adjList[v].push_back(w); // Add w to v’s list.
 }
 
-// Iterative function for DFS
-void Graph::DFS(int startV) {
+// Iterative function for Breadth First Search
+void Graph::BFS(int startV) {
    queue<int> frontierQ;
    vector<int> discovered;
    int current;

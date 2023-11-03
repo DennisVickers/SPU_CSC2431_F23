@@ -6,13 +6,6 @@ int main() {
    int startVertex = 0;
    Graph g(verticies); // Create a graph with 4 vertices
 
-//   g.addEdge(0, 1);
-//   g.addEdge(0, 2);
-//   g.addEdge(1, 2);
-//   g.addEdge(2, 0);
-//   g.addEdge(2, 3);
-//   g.addEdge(3, 3);
-
    g.addEdge(0,1);
    g.addEdge(0,3);
    g.addEdge(1,0);
@@ -26,11 +19,11 @@ int main() {
    g.addEdge(5,2);
    g.addEdge(5,4);
 
-   cout << "Depth First Traversal starting from vertex: " << startVertex << endl;
+   cout << "Breadth First Traversal starting from vertex: " << startVertex << endl;
 
    g.showAdjList();
 
-   g.qDFS(startVertex);
+   g.BFS(startVertex);
 
    g.showVisited();
 
